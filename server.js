@@ -38,7 +38,7 @@ var data = [
   ];
 
 app.get('/', (req, res, next) =>
-	res.render('login.ejs', {data: title}))
+	res.render('login.ejs', {data: data}))
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
