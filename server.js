@@ -6,12 +6,10 @@ const slug = require('slug');
 const path = require('path');
 const multer = require('multer');
 
-express()
-	.use(express.static('static'))
-	.use(express.urlencoded({extended: true}))
-	.use('/static', express.static('static'))
-	.set('view engine', 'ejs')
-	.listen(8000)
+app.use(express.static('static'))
+app.use(express.urlencoded({extended: true}))
+app.use('/static', express.static('static'))
+app.set('view engine', 'ejs')
 
 let data = [{
 	  	title: 'Lord of the Rings',
@@ -29,7 +27,6 @@ app.get('/detail', (req, res, next) => {
 
 app.post('/addmovie', (req, res, next) =>
 {
-	console.log(req.body)
   	const title = req.body.title;
   	const plot = req.body.plot;
   	const description = req.body.description;
