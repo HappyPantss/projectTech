@@ -17,7 +17,10 @@ require('dotenv').config();
 let db = null;
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + "@" + process.env.DB_HOST;
-const client = new MongoClient(uri, { useNewUrlParser: true });
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(() => {
+  db = client.db(process.env.DB_NAME);
+});
 
 mongo.MongoClient.connect(uri, function (err, client) {
 	if (err) {
@@ -25,6 +28,7 @@ mongo.MongoClient.connect(uri, function (err, client) {
 	}
 
 	db = client.db(process.env.DB_NAME)
+	console.log(db)
 })
 
 app.use(express.static('static'))
@@ -34,35 +38,35 @@ app.set('view engine', 'ejs') // Makes sure we use EJS as a templating engine
 
 
 
-function users(req, res, next) {
-	db.collection('user').find().toArray(done)
-	// connection.query('SELECT * FROM users', done)
+// function users(req, res, next) {
+// 	db.collection('user').find().toArray(done)
+// 	// connection.query('SELECT * FROM users', done)
 
-	function done(err, data) {
-		if (err) {
-			next(err)
-		} else {
-			console.log(data)
-			res.render('detail', {data: data})
-		}
-	}
-}
+// 	function done(err, data) {
+// 		if (err) {
+// 			next(err)
+// 		} else {
+// 			console.log(data)
+// 			res.render('detail', {data: data})
+// 		}
+// 	}
+// }
 
-function user(req, res, next) {
-	var id = req.params.id
+// function user(req, res, next) {
+// 	var id = req.params.id
 	
-	db.collection('user').findOne({
-		_id: new mongo.ObjectID(id)
-	}, done)
+// 	db.collection('user').findOne({
+// 		_id: new mongo.ObjectID(id)
+// 	}, done)
 
-	function done(err, data) {
-		if (err) {
-			next(err)
-		} else {
-			res.render('detail', {data: data})
-		}
-	}
-}
+// 	function done(err, data) {
+// 		if (err) {
+// 			next(err)
+// 		} else {
+// 			res.render('detail', {data: data})
+// 		}
+// 	}
+// }
 
 // Render EJS to HTML
 app.get('/', (req, res, next) => {
