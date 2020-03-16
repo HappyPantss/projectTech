@@ -1,54 +1,80 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const body = require('body-parser');
+const bodyParser = require('body-parser');
 const slug = require('slug');
 const path = require('path');
 const multer = require('multer');
+const urlencodedParser = bodyParser.urlencoded({
+	extended: true
+});
+const mongo = require('mongodb')
+
+require('dotenv').config();
+// console.log(process.cwd());
 
 app.use(express.static('static'))
 app.use(express.urlencoded({extended: true}))
 app.use('/static', express.static('static'))
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs') // Makes sure we use EJS as a templating engine
 
-let data = [{
-	  	title: 'Lord of the Rings',
-	  	plot: 'The Fellowship of the Ring embark on a journey to destroy the One Ring and end Sauron`s reign over Middle-earth.',
-	  	description: 'The Lord of the Rings is the saga of a group of sometimes reluctant heroes..'
-	}];
+// Mongo setup code, get necessary collection back in let matches.
+let db = null;
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + "@" + process.env.DB_NAME + "-xbcbo.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("projectTech").collection("users");
+  // perform actions on the collection object
+  client.close();
+});
 
+mongo.MongoClient.connect(uri, function (err, client) {
+	if (err) {
+		throw err
+	}
+
+	db = client.db(process.env.DB_NAME)
+})
+
+function users(req, res, next) {
+	db.collection('user').find().toArray(done)
+	// connection.query('SELECT * FROM users', done)
+
+	function done(err, data) {
+		if (err) {
+			next(err)
+		} else {
+			console.log(data)
+			res.render('detail', {data: data})
+		}
+	}
+}
+
+function user(req, res, next) {
+	var id = req.params.id
+	
+	db.collection('user').findOne({
+		_id: new mongo.ObjectID(id)
+	}, done)
+
+	function done(err, data) {
+		if (err) {
+			next(err)
+		} else {
+			res.render('detail', {data: data})
+		}
+	}
+}
+
+// Render EJS to HTML
 app.get('/', (req, res, next) => {
-	res.render('login.ejs', {data: data})
+	res.render('login')
 });
 
 app.get('/detail', (req, res, next) => {
 	res.render('detail.ejs', {data: data})
 });
-
-app.post('/addmovie', (req, res, next) =>
-{
-  	const title = req.body.title;
-  	const plot = req.body.plot;
-  	const description = req.body.description;
-	
-	data.push({
-		title: title,
-	  	plot: plot,
-	  	description: description
-  })
-
-  res.redirect('/')
-});
-
-function add(req, res) {
-	data.push({
-		title: req.body.title,
-		plot: req.body.plot,
-		description: req.body.description
-	})
-
-	res.redirect('/detail')
-}
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 

@@ -6,9 +6,13 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello World.</h1>
-    <h2><%= data[0].title %></h2>
-    <h2><%= data[0].plot %></h2>
-    <h2><%= data[0].description %></h2>
+    <h1>Existing Data.</h1>
+    <% data.forEach(function(movie){ %>
+    <ul>
+            <li><%= movie.title %></li>
+            <li><%= movie.plot %></li>
+            <li><%= movie.description %></li>
+    </ul>
+    <% }); %>
 </body>
 </html>
