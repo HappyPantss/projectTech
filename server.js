@@ -44,7 +44,7 @@ function users(req, res, next) {
 		next(err)
 	  } else {
 		  console.log(data)
-		res.render('/', {data: data})
+		res.render('/', {users: data})
 	  }
 	}
   }
