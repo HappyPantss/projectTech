@@ -44,8 +44,8 @@ function users(req, res, next) {
 	  if (err) {
 		next(err)
 	  } else {
-		//   console.log(data)
-		res.render('/', {users: data})
+		// console.log(data)
+		res.render('login', {users: data})
 	  }
 	}
   }
@@ -81,9 +81,7 @@ function users(req, res, next) {
 // }
 
 // Render EJS to HTML
-app.get('/', (req, res, next) => {
-	res.render('login')
-});
+app.get('/', users)
 
 app.get('/detail', (req, res, next) => {
 	res.render('detail.ejs', {data: data})
