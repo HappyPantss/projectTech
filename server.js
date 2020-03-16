@@ -13,21 +13,11 @@ const mongo = require('mongodb')
 require('dotenv').config();
 // console.log(process.cwd());
 
-app.use(express.static('static'))
-app.use(express.urlencoded({extended: true}))
-app.use('/static', express.static('static'))
-app.set('view engine', 'ejs') // Makes sure we use EJS as a templating engine
-
 // Mongo setup code, get necessary collection back in let matches.
 let db = null;
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + "@" + process.env.DB_NAME + "-xbcbo.mongodb.net/test?retryWrites=true&w=majority";
+const uri = "mongodb+srv://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + "@" + process.env.DB_HOST;
 const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("projectTech").collection("users");
-  // perform actions on the collection object
-  client.close();
-});
 
 mongo.MongoClient.connect(uri, function (err, client) {
 	if (err) {
@@ -36,6 +26,13 @@ mongo.MongoClient.connect(uri, function (err, client) {
 
 	db = client.db(process.env.DB_NAME)
 })
+
+app.use(express.static('static'))
+app.use(express.urlencoded({extended: true}))
+app.use('/static', express.static('static'))
+app.set('view engine', 'ejs') // Makes sure we use EJS as a templating engine
+
+
 
 function users(req, res, next) {
 	db.collection('user').find().toArray(done)
