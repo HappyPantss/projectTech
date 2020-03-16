@@ -36,6 +36,7 @@ app.use(express.urlencoded({extended: true}))
 app.use('/static', express.static('static'))
 app.set('view engine', 'ejs') // Makes sure we use EJS as a templating engine
 
+// find data from DB
 function users(req, res, next) {
 	db.collection('user').find().toArray(done)
   
@@ -43,7 +44,7 @@ function users(req, res, next) {
 	  if (err) {
 		next(err)
 	  } else {
-		  console.log(data)
+		//   console.log(data)
 		res.render('/', {users: data})
 	  }
 	}
