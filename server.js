@@ -28,7 +28,7 @@ mongo.MongoClient.connect(uri, function (err, client) {
 	}
 
 	db = client.db(process.env.DB_NAME)
-	console.log(db)
+	// console.log(db)
 })
 
 app.use(express.static('static'))
@@ -36,7 +36,18 @@ app.use(express.urlencoded({extended: true}))
 app.use('/static', express.static('static'))
 app.set('view engine', 'ejs') // Makes sure we use EJS as a templating engine
 
-
+function users(req, res, next) {
+	db.collection('user').find().toArray(done)
+  
+	function done(err, data) {
+	  if (err) {
+		next(err)
+	  } else {
+		  console.log(data)
+		res.render('/', {data: data})
+	  }
+	}
+  }
 
 // function users(req, res, next) {
 // 	db.collection('user').find().toArray(done)

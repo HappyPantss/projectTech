@@ -17,10 +17,8 @@
         <button type="submit">SUBMIT</button>
     </form>
 
-    <% users.forEach(function(user){ %>
-        <p>Username: <%= data[index].usernane %></p>
-        <p>Password: <%= data[index].password %></p>
-        <p><%= data[index]._id %></p>
-      <% }) %>
+    <% users.forEach(function(movie){ %>
+        <p><%= data[index].username %></p>
+    <% }); %>
 </body>
 </html>
