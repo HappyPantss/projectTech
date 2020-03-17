@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Amore Dating App - Register</title>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
 <body>
 
-    <h1>REGISTER</h1>
+    <!-- <h1>REGISTER</h1>
 
     <form action="/" method="post">
         <label for="username">Username: </label>
@@ -18,6 +19,45 @@
     </form>
     <br>
     <a href="/">LOGIN HERE</a><br>
-    <a href="allUsers">ALL USERS</a>
+    <a href="allUsers">ALL USERS</a> -->
+
+    <div class="containerRegister">
+        <a href="index.html"><img src="img/logo.png" alt=""></a>
+        <div class="welcome">
+          <h1 class="register">Register now!</h1>
+        </div>
+        <form action="/" method="post">
+          <fieldset>
+            <div class="formpjes">
+            <label for="name">Name:</label>
+                <input type="text" name="name">
+            </div>
+            <div class="formpjes">
+                <label for="username">Username: </label>
+                <input type="text" name="username" id="username">
+            </div>
+            <div class="formpjes">
+              <label for="email">Email address:</label>
+              <input type="email" name="email">
+            </div>
+            <div class="formpjes">
+              <label for="phonenumber">Phone Number:</label>
+              <input type="number" name="phonenumber">
+            </div>
+            <div class="formpjes">
+                <label for="password">Password: </label>
+                <input type="password" name="password" id="password">
+            </div>
+            <div class="formpjes">
+              <label for="confirmPassword">Confirm Password:</label>
+              <input type="password" name="confirmPassword" id="confirmPassword">
+            </div>
+            
+            <button type="submit" id="submitButton">ADD</button>
+          </fieldset>
+        </form>
+        <a href="/">LOGIN HERE</a><br>
+        <a href="allUsers">ALL USERS</a>
+      </div>
 </body>
 </html>
