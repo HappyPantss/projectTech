@@ -18,6 +18,8 @@ In this repo I'm building my feature for a dating app called 'Amore'. Its for my
 1. Run Developer Mode
 ```git $ npm run dev ```
 
+2. Go to localhost:3000 in your browser and if everything has gone succesfull, you should see the feature.
+
 # License
 [MIT license](https://github.com/HappyPantss/projectTech/blob/master/LICENSE)
 
