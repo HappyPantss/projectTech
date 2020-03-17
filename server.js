@@ -112,6 +112,10 @@ app.get('/allUsers', (req, res, next) => {
 	res.render('allUsers.ejs')
 });
 
+app.get('/detail', (req, res, next) => {
+	res.render('detail.ejs')
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
 // app.get('/', (req, res) => res.send('Hello World!'))
