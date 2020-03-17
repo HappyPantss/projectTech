@@ -36,56 +36,43 @@ app.use(express.urlencoded({extended: true}))
 app.use('/static', express.static('static'))
 app.set('view engine', 'ejs') // Makes sure we use EJS as a templating engine
 
-// find data from DB
+// read data from DB
 function users(req, res, next) {
 	db.collection('user').find().toArray(done)
-  
+
 	function done(err, data) {
-	  if (err) {
-		next(err)
-	  } else {
+		if (err) {
+			next(err)
+		} else {
 		// console.log(data)
-		res.render('login', {users: data})
-	  }
+			res.render('login', {users: data})
+		}
 	}
-  }
+}
 
-// function users(req, res, next) {
-// 	db.collection('user').find().toArray(done)
-// 	// connection.query('SELECT * FROM users', done)
+// add data to DB
+function add(req, res, next){
+	db.collection('user').insertOne({
+		username: req.body.username,
+		password: req.body.password
+	}, done)
 
-// 	function done(err, data) {
-// 		if (err) {
-// 			next(err)
-// 		} else {
-// 			console.log(data)
-// 			res.render('detail', {data: data})
-// 		}
-// 	}
-// }
-
-// function user(req, res, next) {
-// 	var id = req.params.id
-	
-// 	db.collection('user').findOne({
-// 		_id: new mongo.ObjectID(id)
-// 	}, done)
-
-// 	function done(err, data) {
-// 		if (err) {
-// 			next(err)
-// 		} else {
-// 			res.render('detail', {data: data})
-// 		}
-// 	}
-// }
+	function done(err, data) {
+		if (err) {
+			next(err)
+		} else {
+			// res.redirect('/')
+			// console.log('Gelukt!')
+		}
+	}
+}
 
 // Render EJS to HTML
 app.get('/', users)
 
-app.get('/detail', (req, res, next) => {
-	res.render('detail.ejs', {data: data})
-});
+// app.get('/detail', (req, res, next) => {
+// 	res.render('detail.ejs', {user: data})
+// });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 

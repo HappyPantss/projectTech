@@ -7,12 +7,10 @@
 </head>
 <body>
     <h1>Existing Data.</h1>
-    <% data.forEach(function(movie){ %>
-    <ul>
-            <li><%= movie.title %></li>
-            <li><%= movie.plot %></li>
-            <li><%= movie.description %></li>
-    </ul>
+    <% users.forEach(function(user){ %>
+        <ul>
+        <li><%= user.username %></li>
+        </ul>
     <% }); %>
 </body>
 </html>
