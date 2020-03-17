@@ -1,4 +1,4 @@
-# projectTech
+# projectTech: Amore Dating App - Login/ register feature
 
 In this repo I'm building my feature for a dating app called 'Amore'. Its for my project I had in my second year of my study Communication and Multimedia Design at the Amsterdam University of Applied Sciences.
 
