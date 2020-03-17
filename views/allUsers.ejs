@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>ALL USERS</h1>
+
+    <% users.forEach(function(user){ %>
+    <ul>
+        <li><%= user.username %></li>
+        <li><%= user.password %></li>
+        <a href="detail/<%= user._id %>">See profile</a>
+    </ul>
+    
+    <% }); %>
+    <br>
+    <a href="/">LOGIN HERE</a><br>
+    <a href="/register">REGISTER HERE</a>
+
+</body>
+</html>

@@ -45,10 +45,18 @@ function users(req, res, next) {
 			next(err)
 		} else {
 		// console.log(data)
-			res.render('login', {users: data})
+			res.render('allUsers', {users: data})
 		}
 	}
 }
+
+// function login() {
+// 	db.collection.find({
+// 		'user' : {
+// 			$exists: true, $ne: null
+// 		}
+// 	})
+// }
 
 // add data to DB
 function add(req, res, next){
@@ -61,18 +69,48 @@ function add(req, res, next){
 		if (err) {
 			next(err)
 		} else {
+			res.render('/', {users: data})
 			// res.redirect('/')
-			// console.log('Gelukt!')
+			// console.log(data)
 		}
 	}
 }
 
-// Render EJS to HTML
-app.get('/', users)
+// function remove(req, res, next) {
+// 	const id = req.params.id
 
-// app.get('/detail', (req, res, next) => {
-// 	res.render('detail.ejs', {user: data})
-// });
+// 	db.collection('user').deleteOne({
+// 		_id: mongo.ObjectID(id)
+// 	}, done)
+
+// 	function done(err) {
+// 		if (err) {
+// 			next(err)
+// 		} else {
+// 			console.log(data)
+// 			// res.json({status: 'ok'})
+// 		}
+// 	}
+// }
+
+// Render EJS to HTML
+app.get('/allUsers', users)
+
+app.post('/', add)
+
+// app.post('/', remove)
+
+app.get('/', (req, res, next) => {
+	res.render('login.ejs')
+});
+
+app.get('/register', (req, res, next) => {
+	res.render('register.ejs')
+});
+
+app.get('/allUsers', (req, res, next) => {
+	res.render('allUsers.ejs')
+});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
