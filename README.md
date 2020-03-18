@@ -14,6 +14,21 @@ In this repo I'm building my feature for a dating app called 'Amore'. Its for my
 2. Install dependencies:
 ```git $ npm install ```
 
+3. Add a .env file with:
+```
+DB_HOST=projectTech-xbcbo.mongodb.net/test?retryWrites=true&w=majority
+DB_NAME=<yourCollection>
+DB_PORT=27017
+DB_USER=<yourUsername>
+DB_PASSWORD=<youPassword>
+````
+
+4. Add a .gitignore file with:
+```
+/node_modules
+.env
+```
+
 # Usage
 1. Run Developer Mode
 ```git $ npm run dev ```
