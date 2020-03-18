@@ -9,6 +9,7 @@ h1 {
     font-family: 'Monotype Corsiva';
     font-size: 4rem;
     color: #EB5A61;
+    margin-top: 0;
 }
 
 h1.register {

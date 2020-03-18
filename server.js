@@ -50,14 +50,6 @@ function users(req, res, next) {
 	}
 }
 
-// function login() {
-// 	db.collection.find({
-// 		'user' : {
-// 			$exists: true, $ne: null
-// 		}
-// 	})
-// }
-
 // add data to DB
 function add(req, res, next){
 	db.collection('user').insertOne({
@@ -75,6 +67,22 @@ function add(req, res, next){
 		}
 	}
 }
+
+function login(req) {
+	let gebruiker = db.collection('user').findOne({
+		username: req.body.username
+	}).then(data => console.log(data));
+}
+
+// function login(done) {
+// 	db.collection('user').find().toArray(done)
+
+// 	if(user.username === "Sergio") {
+// 		console.log("Hello there!")
+// 	} else {
+// 		console.log("okdoei!!!")
+// 	}
+// }
 
 // function remove(req, res, next) {
 // 	const id = req.params.id
@@ -97,6 +105,8 @@ function add(req, res, next){
 app.get('/allUsers', users)
 
 app.post('/', add)
+
+app.post('/login', login)
 
 // app.post('/', remove)
 
