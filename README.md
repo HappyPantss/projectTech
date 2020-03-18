@@ -18,11 +18,15 @@ In this repo I'm building my feature for a dating app called 'Amore'. Its for my
 1. Run Developer Mode
 ```git $ npm run dev ```
 
-2. Go to localhost:3000 in your browser and if everything has gone succesfull, you should see the app.
+2. Go to `localhost:3000` in your browser and if everything has gone succesfull, you should see the app.
 
 3. Open Inspect Element by pressing the F12 button. Change your screen to mobile just like the picture down below. The app currently only works on mobile.
 
 ![Inspect Element](https://i.imgur.com/Hia911b.png)
+
+4. Logging in is not working! What you can do is:
+- Go to the register page, and register a new profile
+- See all the users that exist (you can check if your profile is added)
 
 # License
 [MIT license](https://github.com/HappyPantss/projectTech/blob/master/LICENSE)
