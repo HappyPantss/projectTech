@@ -11,8 +11,8 @@
 
     <% users.forEach(function(user){ %>
     <ul>
-        <li><%= user.username %></li>
-        <li><%= user.password %></li>
+        <li>Username: <%= user.username %></li>
+        <li>Password: <%= user.password %></li>
         <a href="detail/<%= user._id %>">See profile</a>
     </ul>
     

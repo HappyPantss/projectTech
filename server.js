@@ -53,8 +53,11 @@ function users(req, res, next) {
 // add data to DB
 function add(req, res, next){
 	db.collection('user').insertOne({
+		name: req.body.name,
 		username: req.body.username,
-		password: req.body.password
+		email: req.body.email,
+		phonenumber: req.body.phonenumber,
+		password: req.body.password,
 	}, done)
 
 	function done(err, data) {
@@ -62,28 +65,22 @@ function add(req, res, next){
 			next(err)
 		} else {
 			res.render('/', {users: data})
-			// res.redirect('/')
-			// console.log(data)
 		}
 	}
 }
 
-function login(req) {
-	let gebruiker = db.collection('user').findOne({
-		username: req.body.username
-	}).then(data => console.log(data));
-}
-
-// function login(done) {
-// 	db.collection('user').find().toArray(done)
-
-// 	if(user.username === "Sergio") {
-// 		console.log("Hello there!")
-// 	} else {
-// 		console.log("okdoei!!!")
-// 	}
+// login using username and password (not working/ workin on)
+// function login(req) {
+// 	db.collection('user').findOne({
+// 		username: req.body.username
+// 	}).then(data => {
+// 		if(data.username === req.body.username) {
+// 			console.log("Hello");
+// 		}
+// 	});
 // }
 
+// delete data (not working/ working on)
 // function remove(req, res, next) {
 // 	const id = req.params.id
 
@@ -106,7 +103,7 @@ app.get('/allUsers', users)
 
 app.post('/', add)
 
-app.post('/login', login)
+// app.post('/login', login)
 
 // app.post('/', remove)
 

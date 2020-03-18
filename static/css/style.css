@@ -60,6 +60,10 @@ input, #submitButton {
   padding: 1em;
 }
 
+button:disabled {
+  background-color: #7f8c8d!important;
+}
+
 .containerRegister input, .containerRegister #submitButton {
   margin-top: 10px;
 }
