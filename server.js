@@ -72,10 +72,13 @@ function add(req, res, next){
 // login using username and password (not working/ workin on)
 // function login(req) {
 // 	db.collection('user').findOne({
-// 		username: req.body.username
+// 		username: req.body.username,
+// 		password: req.body.password
 // 	}).then(data => {
-// 		if(data.username === req.body.username) {
-// 			console.log("Hello");
+// 		if(data.username === req.body.username && data.password === req.body.password) {
+// 			console.log('Welcome');
+// 		} else {
+// 			res.render('login', {error: 'password invalid'})
 // 		}
 // 	});
 // }
