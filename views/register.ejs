@@ -30,7 +30,7 @@
           <fieldset>
             <div class="formpjes">
             <label for="name">Name:</label>
-                <input type="text" name="name">
+                <input type="text" name="name" required>
             </div>
             <div class="formpjes">
                 <label for="username">Username: </label>
@@ -46,11 +46,11 @@
             </div>
             <div class="formpjes">
                 <label for="password">Password: </label>
-                <input type="password" name="password" id="password" required>
+                <input type="text" name="password" id="password" required>
             </div>
             <div class="formpjes">
-              <label for="confirmPassword">Confirm Password:</label>
-              <input type="password" name="confirmPassword" id="confirmPassword" required>
+              <label for="confirmPassword" id="cPasswordLabel">Confirm Password:</label>
+              <input type="text" name="confirmPassword" id="confirmPassword" required>
             </div>
             
             <button type="submit" id="submitButton">ADD</button>
@@ -60,4 +60,5 @@
         <a href="allUsers">ALL USERS</a>
       </div>
 </body>
+<script src="static/js/script.js"></script>
 </html>
