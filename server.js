@@ -104,6 +104,12 @@ function add(req, res, next){
 // Render EJS to HTML
 app.get('/allUsers', users)
 
+// app.get('/detail?id=' + users._id + '', users)
+
+app.get('/detail/' + users.username + '', users)
+
+app.get('/detail', users)
+
 app.post('/', add)
 
 // app.post('/login', login)
@@ -123,6 +129,14 @@ app.get('/allUsers', (req, res, next) => {
 });
 
 app.get('/detail', (req, res, next) => {
+	res.render('detail.ejs')
+});
+
+// app.get('/detail?id=' + users._id + '', (req, res, next) => {
+// 	res.render('detail.ejs')
+// });
+
+app.get('/detail/' + users.username + '', (req, res, next) => {
 	res.render('detail.ejs')
 });
 

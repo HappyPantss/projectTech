@@ -13,7 +13,8 @@
     <ul>
         <li>Username: <%= user.username %></li>
         <li>Password: <%= user.password %></li>
-        <a href="detail/<%= user._id %>">See profile</a>
+        <!-- <a href="detail?id=<%= user._id %>">See profile</a> -->
+        <a href="detail/<%= user.username %>">See profile</a>
     </ul>
     
     <% }); %>
