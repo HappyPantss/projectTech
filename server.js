@@ -104,9 +104,9 @@ function add(req, res, next){
 // Render EJS to HTML
 app.get('/allUsers', users)
 
-// app.get('/detail?id=' + users._id + '', users)
+app.get('/detail/:id/' + users._id + '', users)
 
-app.get('/detail/' + users.username + '', users)
+// app.get('/detail/' + users.username + '', users)
 
 app.get('/detail', users)
 
@@ -136,8 +136,13 @@ app.get('/detail', (req, res, next) => {
 // 	res.render('detail.ejs')
 // });
 
-app.get('/detail/' + users.username + '', (req, res, next) => {
-	res.render('detail.ejs')
+app.get('/detail/:id/', async (req, res, next) => {
+	try {
+		const profile = await db.collection('user').findOne({ _id: mongo.ObjectID(req.params.id) })	
+		res.render('detail.ejs', {user: profile})
+	} catch(err) {
+		console.log(err);
+	}
 });
 
 app.get('/forgotPass', (req, res, next) => {
