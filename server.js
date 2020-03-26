@@ -64,24 +64,24 @@ function add(req, res, next){
 		if (err) {
 			next(err)
 		} else {
-			res.render('/', {users: data})
+			res.redirect('/allUsers')
 		}
 	}
 }
 
 // login using username and password (not working/ workin on)
-// function login(req) {
-// 	db.collection('user').findOne({
-// 		username: req.body.username,
-// 		password: req.body.password
-// 	}).then(data => {
-// 		if(data.username === req.body.username && data.password === req.body.password) {
-// 			console.log('Welcome');
-// 		} else {
-// 			res.render('login', {error: 'password invalid'})
-// 		}
-// 	});
-// }
+function login(req) {
+	db.collection('user').findOne({
+		username: req.body.username,
+		password: req.body.password
+	}).then(data => {
+		if(data.username === req.body.username && data.password === req.body.password) {
+			console.log('Welcome');
+		} else {
+			res.render('login', {error: 'password invalid'})
+		}
+	});
+}
 
 // delete data (not working/ working on)
 // function remove(req, res, next) {
@@ -124,9 +124,9 @@ app.get('/register', (req, res, next) => {
 	res.render('register.ejs')
 });
 
-app.get('/allUsers', (req, res, next) => {
-	res.render('allUsers.ejs')
-});
+// app.get('/allUsers', (req, res, next) => {
+// 	res.render('allUsers.ejs')
+// });
 
 app.get('/detail', (req, res, next) => {
 	res.render('detail.ejs')
