@@ -2,19 +2,22 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const bodyParser = require('body-parser');
+// COMMENT: Would recommend using slug when taking data from a form like slug(req.body.firstName)
+// COMMENT: Only if you use it, import it. It's now removed because you didn't use it at all.
 const urlencodedParser = bodyParser.urlencoded({
 	extended: true
 });
 const mongo = require('mongodb')
 
 require('dotenv').config();
-// console.log(process.cwd());
 
 // Mongo setup code, get necessary collection back in let matches.
 let db = null;
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + "@" + process.env.DB_HOST;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+// Turned the database connection to the right one, so you dont get the error with useUnifiedTopology anymore
 client.connect((err) => {
 	if (err) {
 		throw err
@@ -29,15 +32,16 @@ app.set('view engine', 'ejs') // Makes sure we use EJS as a templating engine
 
 // Render EJS to HTML
 app.get('/allUsers', users)
-
 app.get('/detail/:id/' + users._id + '', users)
-
 app.get('/detail', users)
-
 app.post('/', add)
 
 app.get('/', (req, res, next) => {
 	res.render('login.ejs')
+});
+
+app.get('/forgotPass', (req, res, next) => {
+	res.render('forgotPass.ejs')
 });
 
 app.get('/register', (req, res, next) => {
@@ -57,10 +61,6 @@ app.get('/detail/:id/', async (req, res, next) => {
 	}
 });
 
-app.get('/forgotPass', (req, res, next) => {
-	res.render('forgotPass.ejs')
-});
-
 function users(req, res, next) {
 	db.collection('user').find().toArray(done)
 
@@ -68,7 +68,6 @@ function users(req, res, next) {
 		if (err) {
 			next(err)
 		} else {
-		// console.log(data)
 			res.render('allUsers', {users: data})
 		}
 	}
