@@ -2,6 +2,16 @@
 
 In this repo I'm building my feature for a dating app called 'Amore'. Its for my project I had in my second year of my study Communication and Multimedia Design at the Amsterdam University of Applied Sciences.
 
+# Amore Dating App
+
+![Home](https://i.imgur.com/F5jfwH7.png)
+![Register](https://i.imgur.com/OPO9DHj.png)
+![Forgot Password](https://i.imgur.com/lYIJA1s.png)
+
+"With this app you can search for your new love! Register and login, and lets hope you will find your future partner"
+
+With this app you can register an account, and login with it!
+
 # Job story
 
 "When I am using a dating app to look for a partner, I want to be able to register a profile and to login, so I always can come back and talk with my matches."
@@ -43,8 +53,10 @@ DB_PASSWORD=<youPassword>
 - Go to the register page, and register a new profile
 - See all the users that exist (you can check if your profile is added)
 
+# Database Structure
+![Database Structure](https://i.imgur.com/DMugLfN.png)
+Collection: user
+Database name: users
+
 # License
 [MIT license](https://github.com/HappyPantss/projectTech/blob/master/LICENSE)
-
-
-
