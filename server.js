@@ -34,7 +34,7 @@ app.set('view engine', 'ejs') // Makes sure we use EJS as a templating engine
 app.get('/allUsers', users)
 app.get('/detail/:id/' + users._id + '', users)
 app.get('/detail', users)
-app.post('/', add)
+app.post('/', add, users)
 
 app.get('/', (req, res, next) => {
 	res.render('login.ejs')
